@@ -31,8 +31,8 @@ function question4(input: number[]): number {
     return -1;
 }
 
-getInput(2, data => {
-    const opcodes: number[] = data.split(',').map(str => +str);
+getInput(2, (data: string) => {
+    const opcodes: number[] = data.split(',').map((str: string) => +str);
 
     const answer3: number = question3(opcodes, 12, 2);
     const answer4: number = question4(opcodes);

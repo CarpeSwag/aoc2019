@@ -1,6 +1,6 @@
 import {getInputLines} from './util/input';
 
-function question1(input) {
+function question1(input: number[]): number {
     const fuelRequired = function(mass: number): number {
         return Math.floor(mass / 3) - 2;
     }
@@ -10,7 +10,7 @@ function question1(input) {
     }, 0);
 }
 
-function question2(input) {
+function question2(input: number[]): number {
     const fuelRequired = function(mass: number): number {
         const fuel = Math.max(0, Math.floor(mass / 3) - 2);
         return (fuel <= 0)? fuel: fuel + fuelRequired(fuel);
@@ -21,7 +21,7 @@ function question2(input) {
     }, 0);
 }
 
-getInputLines(1, data => {
+getInputLines(1, (data: string[]) => {
     const mass: number[] = data.map(str => +str);
     const answer1: number = question1(mass);
     const answer2: number = question2(mass);
