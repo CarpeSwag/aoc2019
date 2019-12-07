@@ -5,12 +5,16 @@ import key from "./key";
 function request(url: string, path: string, onSuccess: Function) {
     https.get(url, {headers: {Cookie: `session=${key}`}},
         res => {
+            let data: string = "";
             res.on('data', (buf: Iterable<number>) => {
                 const uintBuf: any = new Uint16Array(buf);
-                const data: string = String.fromCharCode.apply(null, uintBuf);
+                data += String.fromCharCode.apply(null, uintBuf);
+            });
+
+            res.on('end', () => {
                 fs.writeFile(path, data, () => {});
                 onSuccess(data);
-            })
+            });
         }
     );
 }
